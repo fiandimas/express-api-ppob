@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 
 const LevelController = require('./controllers/level')
 const AdminController = require('./controllers/admin')
+const CostController = require('./controllers/cost')
+const CustomerController = require('./controllers/customer')
 
 const app = express()
 
@@ -24,6 +26,11 @@ app.get('/', (req,res) => {
 
 app.post('/level', LevelController.show)
 app.post('/admin/login', AdminController.login)
+
+app.post('/cost', CostController.show)
+app.post('/cost/add', CostController.create)
+
+app.post('/customer/add', CustomerController.create)
 
 mongoose.connect('mongodb://localhost:27017/api-ppob',{ useNewUrlParser: true })
 mongoose.Promise = global.Promise
