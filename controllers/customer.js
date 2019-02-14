@@ -2,6 +2,20 @@ const Customer = require('../models/customer')
 const ObjectId = require('mongodb').ObjectID
 const md5 = require('md5')
 
+exports.show = (req,res) => {
+  Customer.find({}, (err,result) => {
+    if(err) throw err
+    const data = {
+      status: 'success',
+      code: 200,
+      msg: 'Success load all customer',
+      data: result
+    }
+
+    res.json(data)
+  })
+}
+
 exports.create = (req,res) => {
   const body = req.body
   const name = body.name,
