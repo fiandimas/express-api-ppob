@@ -10,4 +10,8 @@ const BillSchema = new Schema({
     type: String,
     enum: ['y','n','r','p']
   }
+},{
+  versionKey: false
 })
+
+module.exports = mongoose.model('bills', BillSchema)

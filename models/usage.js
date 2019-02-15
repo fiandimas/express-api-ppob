@@ -7,6 +7,8 @@ const UsageSchema = new Schema({
   year: Number,
   start_meter: Number,
   finish_meter: Number
+},{
+  versionKey: false
 })
 
 module.exports = mongoose.model('usages', UsageSchema)
