@@ -28,14 +28,18 @@ app.post('/level', LevelController.show)
 
 app.post('/admin', AdminController.show)
 app.post('/admin/login', AdminController.login)
-app.post('/admin/update', AdminController.update)
-app.post('/admin/delete', AdminController.delete)
+app.put('/admin/update', AdminController.update)
+app.delete('/admin/delete', AdminController.delete)
 
 app.post('/cost', CostController.show)
 app.post('/cost/add', CostController.create)
+app.put('/cost/update', CostController.update)
+app.delete('/cost/delete', CostController.delete)
 
-app.post('/customer/add', CustomerController.create)
 app.post('/customer', CustomerController.show)
+app.post('/customer/add', CustomerController.create)
+app.put('/customer/update', CustomerController.update)
+app.delete('/customer/delete', CustomerController.delete)
 
 mongoose.connect('mongodb://localhost:27017/api-ppob',{ useNewUrlParser: true })
 mongoose.Promise = global.Promise
