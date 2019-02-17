@@ -6,6 +6,7 @@ const app = express()
 const LevelController = require('./controllers/level')
 const AdminController = require('./controllers/admin')
 const CostController = require('./controllers/cost')
+const CustomerController = require('./controllers/customer')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -31,6 +32,12 @@ app.post('/cost', CostController.show)
 app.post('/cost/add', CostController.create)
 app.put('/cost/update', CostController.update)
 app.delete('/cost/delete', CostController.delete)
+
+app.post('/customer', CustomerController.show)
+app.post('/customer/add', CustomerController.create)
+app.put('/customer/update', CustomerController.update)
+app.delete('/customer/delete', CustomerController.delete)
+
 
 app.listen(3000, () => {
   console.log('Server listening on localhot:3000')
