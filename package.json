@@ -13,6 +13,7 @@
     "express": "^4.16.4",
     "md5": "^2.2.1",
     "mysql2": "^1.6.5",
-    "sequelize": "^4.42.0"
+    "sequelize": "^4.42.0",
+    "sequelize-cli": "^5.4.0"
   }
 }
