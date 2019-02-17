@@ -7,6 +7,8 @@ const LevelController = require('./controllers/level')
 const AdminController = require('./controllers/admin')
 const CostController = require('./controllers/cost')
 const CustomerController = require('./controllers/customer')
+const UsageController = require('./controllers/usage')
+const BillController = require('./controllers/bill')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -37,6 +39,11 @@ app.post('/customer', CustomerController.show)
 app.post('/customer/add', CustomerController.create)
 app.put('/customer/update', CustomerController.update)
 app.delete('/customer/delete', CustomerController.delete)
+
+app.post('/usage', UsageController.show)
+app.post('/bill', BillController.show)
+app.post('/usage/detail', UsageController.detail)
+app.post('/usage/add', UsageController.create)
 
 
 app.listen(3000, () => {
