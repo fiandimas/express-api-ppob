@@ -44,7 +44,7 @@ app.post('/usage', UsageController.show)
 app.post('/bill', BillController.show)
 app.post('/usage/detail', UsageController.detail)
 app.post('/usage/add', UsageController.create)
-
+app.delete('/usage/delete', UsageController.delete)
 
 app.listen(3000, () => {
   console.log('Server listening on localhot:3000')

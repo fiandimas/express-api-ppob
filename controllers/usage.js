@@ -69,5 +69,39 @@ exports.create = (req,res) => {
 }
 
 exports.delete = (req,res) => {
+  const id_usage = req.body.id_usage
+  db.sequelize.query('SELECT COUNT(*) as total FROM usages INNER JOIN bills ON usages.id=bills.id_usage INNER JOIN payments ON payments.id_bill=bills.id WHERE usages.id=?', {
+    replacements: [id_usage],
+    type: db.sequelize.QueryTypes.SELECT
+  }).then((result) => {
+    if(result[0].total == 0){
+      Bill.destroy({
+        where: {
+          id_usage: id_usage
+        }
+      }).then(() => {
+        Usage.destroy({
+          where: {
+            id: id_usage
+          }
+        }).then(() => {
+          const data = {
+            status: 'success',
+            code: 203,
+            message: 'success delete usage',
+          }
   
+          res.json(data)
+        })
+      })
+    }else{
+      const data = {
+        status: 'success',
+        code: 200,
+        message: 'cant delete usage',
+      }
+
+      res.json(data)
+    }
+  })
 }
