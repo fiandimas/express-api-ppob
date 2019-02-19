@@ -1,17 +1,18 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+const express = require('express'),
+      bodyParser = require('body-parser'),
+      Busboy = require('busboy'),
+      app = express()
 
-const app = express()
-
-const LevelController = require('./controllers/level')
-const AdminController = require('./controllers/admin')
-const CostController = require('./controllers/cost')
-const CustomerController = require('./controllers/customer')
-const UsageController = require('./controllers/usage')
-const BillController = require('./controllers/bill')
+const LevelController = require('./controllers/level'),
+      AdminController = require('./controllers/admin'),
+      CostController = require('./controllers/cost'),
+      CustomerController = require('./controllers/customer'),
+      UsageController = require('./controllers/usage'),
+      BillController = require('./controllers/bill')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(bodyParser.text())
 
 app.get('/', (req,res) => {
   const data = {
@@ -27,6 +28,7 @@ app.post('/level', LevelController.show)
 
 app.post('/admin', AdminController.show)
 app.post('/admin/add', AdminController.create)
+app.post('/admin/login', AdminController.login)
 app.put('/admin/update', AdminController.update)
 app.delete('/admin/delete', AdminController.delete)
 
@@ -37,6 +39,7 @@ app.delete('/cost/delete', CostController.delete)
 
 app.post('/customer', CustomerController.show)
 app.post('/customer/add', CustomerController.create)
+app.post('/customer/login', CustomerController.login)
 app.put('/customer/update', CustomerController.update)
 app.delete('/customer/delete', CustomerController.delete)
 

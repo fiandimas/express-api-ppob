@@ -82,3 +82,43 @@ exports.delete = (req,res) => {
     res.json(data)
   })
 }
+
+exports.login = (req,res) => {
+  const body = req.body
+  const username = body.username,
+        password = md5(body.password)
+
+  Admin.findOne({
+    where: {
+      username: username
+    }
+  }).then((admin) => {
+    if(admin == null){
+      const data = {
+        status: 'success',
+        code: 200,
+        message: 'username not registered'
+      }
+  
+      res.json(data)
+    }else{
+      if(admin.password == password){
+        const data = {
+          status: 'success',
+          code: 200,
+          message: 'Welcome ' + admin.name
+        }
+    
+        res.json(data)
+      }else{
+        const data = {
+          status: 'success',
+          code: 200,
+          message: 'wrong password'
+        }
+    
+        res.json(data)
+      }
+    }
+  })
+}
