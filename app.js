@@ -39,6 +39,7 @@ app.delete('/cost/delete', CostController.delete)
 
 app.post('/customer', CustomerController.show)
 app.post('/customer/add', CustomerController.create)
+app.post('/customer/bill', BillController.customer)
 app.post('/customer/login', CustomerController.login)
 app.put('/customer/update', CustomerController.update)
 app.delete('/customer/delete', CustomerController.delete)
