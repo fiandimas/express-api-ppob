@@ -1,6 +1,6 @@
-const db = require('../models/index')
-const Admin = require('../models/admin')(db.sequelize,db.Sequelize)
-const md5 = require('md5')
+const db = require('../models/index'),
+      Admin = require('../models/admin')(db.sequelize,db.Sequelize),
+      md5 = require('md5')
 
 exports.show = (req,res) => {
   Admin.findAll().then((admin) => {

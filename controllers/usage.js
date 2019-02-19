@@ -1,6 +1,6 @@
-const db = require('../models/index')
-const Usage = require('../models/usage')(db.sequelize,db.Sequelize)
-const Bill = require('../models/bill')(db.sequelize,db.Sequelize)
+const db = require('../models/index'),
+      Usage = require('../models/usage')(db.sequelize,db.Sequelize),
+      Bill = require('../models/bill')(db.sequelize,db.Sequelize)
 
 exports.show = (req,res) => {
   Usage.findAll().then((usage) => {

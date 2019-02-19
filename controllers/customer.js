@@ -1,6 +1,6 @@
-const db = require('../models/index')
-const Customer = require('../models/customer')(db.sequelize,db.Sequelize)
-const md5 = require('md5')
+const db = require('../models/index'),
+      Customer = require('../models/customer')(db.sequelize,db.Sequelize),
+      md5 = require('md5')
 
 exports.show = (req,res) => {
   Customer.findAll().then((customer) => {

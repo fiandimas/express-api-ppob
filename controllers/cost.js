@@ -1,5 +1,5 @@
-const db = require('../models/index')
-const Cost = require('../models/cost')(db.sequelize,db.Sequelize)
+const db = require('../models/index'),
+      Cost = require('../models/cost')(db.sequelize,db.Sequelize)
 
 exports.show = (req,res) => {
   Cost.findAll().then((cost) => {
