@@ -1,6 +1,6 @@
 const express = require('express'),
       bodyParser = require('body-parser'),
-      Busboy = require('busboy'),
+      multer = require('multer'),
       app = express()
 
 const LevelController = require('./controllers/level'),
@@ -8,20 +8,26 @@ const LevelController = require('./controllers/level'),
       CostController = require('./controllers/cost'),
       CustomerController = require('./controllers/customer'),
       UsageController = require('./controllers/usage'),
-      BillController = require('./controllers/bill')
+      BillController = require('./controllers/bill'),
+      HistoryController = require('./controllers/history')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-app.use(bodyParser.text())
 
-app.get('/', (req,res) => {
-  const data = {
-    status: 'success',
-    code: 200,
-    data: []
+const storage = multer.diskStorage({
+  destination: (req,file,cb) => {
+    cb(null, 'public/images/payments')
+  },
+  filename: (req,file,cb) => {
+    cb(null, Date.now() + '-' + file.originalname)
   }
+})
+const upload = multer({
+  storage: storage
+})
 
-  res.json(data)
+app.post('/', upload.single('cek'),(req,res) => {
+  res.send(req.file.filename)
 })
 
 app.post('/level', LevelController.show)
@@ -46,9 +52,12 @@ app.delete('/customer/delete', CustomerController.delete)
 
 app.post('/usage', UsageController.show)
 app.post('/bill', BillController.show)
+app.post('/bill/pay/:id',BillController.upload(),BillController.pay)
 app.post('/usage/detail', UsageController.detail)
 app.post('/usage/add', UsageController.create)
 app.delete('/usage/delete', UsageController.delete)
+
+app.post('/history', HistoryController.show);
 
 app.listen(3000, () => {
   console.log('Server listening on localhot:3000')
