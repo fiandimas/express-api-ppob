@@ -1,6 +1,5 @@
 const express = require('express'),
       bodyParser = require('body-parser'),
-      multer = require('multer'),
       app = express()
 
 const LevelController = require('./controllers/level'),
@@ -14,20 +13,14 @@ const LevelController = require('./controllers/level'),
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-const storage = multer.diskStorage({
-  destination: (req,file,cb) => {
-    cb(null, 'public/images/payments')
-  },
-  filename: (req,file,cb) => {
-    cb(null, Date.now() + '-' + file.originalname)
+app.post('/' ,(req,res) => {
+  const data = {
+    status: 'success',
+    code: 200,
+    message: 'ok'
   }
-})
-const upload = multer({
-  storage: storage
-})
 
-app.post('/', upload.single('cek'),(req,res) => {
-  res.send(req.file.filename)
+  res.json(data)
 })
 
 app.get('/level', LevelController.show)
@@ -54,7 +47,7 @@ app.get('/usage', UsageController.show)
 app.get('/usage/detail/:id_customer', UsageController.detail)
 app.get('/bill', BillController.show)
 app.get('/bill/detail/:id_customer', BillController.detail)
-app.post('/bill/pay/:id',BillController.upload(),BillController.pay)
+app.post('/bill/pay/:id', BillController.upload(), BillController.pay)
 app.post('/usage/add', UsageController.create)
 app.delete('/usage/delete', UsageController.delete)
 

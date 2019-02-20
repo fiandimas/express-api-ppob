@@ -1,5 +1,5 @@
 const db = require('../models/index'),
-      Customer = require('../models/customer')(db.sequelize,db.Sequelize),
+      Customer = require('../models/customer')(db.sequelize, db.Sequelize),
       md5 = require('md5')
 
 exports.show = (req,res) => {

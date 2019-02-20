@@ -1,5 +1,5 @@
 const db = require('../models/index'),
-      Level = require('../models/level')(db.sequelize,db.Sequelize)
+      Level = require('../models/level')(db.sequelize, db.Sequelize)
 
 exports.show = (req,res) => {
   Level.findAll().then((level) => {
