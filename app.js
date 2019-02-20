@@ -61,5 +61,5 @@ app.delete('/usage/delete', UsageController.delete)
 app.get('/history', HistoryController.show);
 
 app.listen(3000, () => {
-  console.log('Server listening on localhot:3000')
+  console.log('Server listening on localhost:3000')
 })
