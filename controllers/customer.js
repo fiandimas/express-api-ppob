@@ -44,7 +44,7 @@ exports.create = (req,res) => {
 
 exports.update = (req,res) => {
   const body = req.body
-  const id = body.id
+  const id = req.params.id
         name = body.name,
         address = body.address,
         kwh_number = body.kwh_number,
@@ -71,7 +71,7 @@ exports.update = (req,res) => {
 }
 
 exports.delete = (req,res) => {
-  const id = req.body.id
+  const id = req.params.id
 
   Customer.destroy({
     where: {

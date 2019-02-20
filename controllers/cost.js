@@ -36,7 +36,7 @@ exports.create = (req,res) => {
 
 exports.update = (req,res) => {
   const body = req.body
-  const id = body.id,
+  const id = req.params.id,
         power = body.power,
         cost = body.cost
 
@@ -59,7 +59,7 @@ exports.update = (req,res) => {
 }
 
 exports.delete = (req,res) => {
-  const id = req.body.id
+  const id = req.params.id
 
   Cost.destroy({
     where: {

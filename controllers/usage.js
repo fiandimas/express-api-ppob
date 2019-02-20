@@ -16,7 +16,7 @@ exports.show = (req,res) => {
 }
 
 exports.detail = (req,res) => {
-  const id_customer = req.body.id_customer
+  const id_customer = req.params.id_customer
 
   Usage.findAll({
     where: {
